@@ -1,30 +1,45 @@
-[gd_scene load_steps=7 format=3 uid="uid://gqmiqsj3v3lw"]
+[gd_scene load_steps=18 format=3 uid="uid://gqmiqsj3v3lw"]
 
 [ext_resource type="PackedScene" uid="uid://do8xwy84jqqbw" path="res://block.tscn" id="1_3hls8"]
+[ext_resource type="Script" uid="uid://qfps1pe07mhc" path="res://level_1.gd" id="1_bjebc"]
 [ext_resource type="PackedScene" uid="uid://5b8c4xcopmuu" path="res://neil.tscn" id="2_hbghi"]
-[ext_resource type="Texture2D" uid="uid://dccg1tfcuqkca" path="res://icon.svg" id="3_hn12h"]
+[ext_resource type="Texture2D" uid="uid://ctcx7lojnnjnb" path="res://assets/money_16266405.png" id="3_rka8t"]
 [ext_resource type="Script" uid="uid://dhot4al2hcen4" path="res://icon.gd" id="4_ihfcg"]
+[ext_resource type="AudioStream" uid="uid://dcggw7y4k86gu" path="res://assets/game-music-player-console-8bit-background-intro-theme-297305.mp3" id="5_rka8t"]
+[ext_resource type="PackedScene" uid="uid://cven1dkm1kpfd" path="res://coin.tscn" id="6_5hph3"]
+[ext_resource type="AudioStream" uid="uid://bfp6j4vc6o1ul" path="res://assets/mixkit-game-treasure-coin-2038.wav" id="8_5rr72"]
+
+[sub_resource type="MeshLibrary" id="MeshLibrary_rka8t"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5hph3"]
+size = Vector3(1, 1, 50)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j7kpp"]
+albedo_color = Color(0.341176, 0.576471, 0.807843, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_j7kpp"]
+material = SubResource("StandardMaterial3D_j7kpp")
+size = Vector3(1, 10, 55)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5hph3"]
+albedo_color = Color(0.237722, 0.728072, 0.188371, 1)
+grow = true
 
 [sub_resource type="BoxMesh" id="BoxMesh_ilcil"]
-size = Vector3(10, 0.5, 10)
+material = SubResource("StandardMaterial3D_5hph3")
+size = Vector3(50, 0.5, 50)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_3hls8"]
-size = Vector3(10, 0.5, 10)
+size = Vector3(50, 0.5, 50)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_j7kpp"]
+size = Vector3(5, 1, 5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_bjebc"]
+size = Vector3(5, 1, 5)
 
 [node name="Level1" type="Node3D"]
-
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(0.999826, -0.00657512, 0.0174795, -0.00169384, 0.900186, 0.435503, -0.0185983, -0.435456, 0.900018, -0.0287971, 3.00016, 7.1544)
-
-[node name="Floor" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.250833, 0)
-metadata/_edit_group_ = true
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
-mesh = SubResource("BoxMesh_ilcil")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
-shape = SubResource("BoxShape3D_3hls8")
+script = ExtResource("1_bjebc")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.903723, -0.128083, -0.408509, 0.423175, 0.411827, 0.807045, 0.0648665, -0.902216, 0.426379, 0.0459694, 9.27291, 0.663131)
@@ -33,10 +48,10 @@ shadow_enabled = true
 [node name="Blocks" type="Node3D" parent="."]
 
 [node name="Block1" parent="Blocks" instance=ExtResource("1_3hls8")]
-transform = Transform3D(1, 0, 0, 0, 0.605391, 0.795928, 0, -0.795928, 0.605391, 0, 3.5118, 0)
+transform = Transform3D(0.971145, 0.153747, -0.182317, -0.0179516, 0.80942, 0.586956, 0.237814, -0.566747, 0.788824, -1.66331, 5.0588, -2.79848)
 
 [node name="Block2" parent="Blocks" instance=ExtResource("1_3hls8")]
-transform = Transform3D(0.792215, -0.469316, -0.390049, 0.610242, 0.609265, 0.506361, 0, -0.639171, 0.769065, 0, 5.3887, 0)
+transform = Transform3D(0.792215, -0.469316, -0.390049, 0.610242, 0.609265, 0.506361, 0, -0.639171, 0.769065, -5.85723, 7.01698, -6.43704)
 
 [node name="Block3" parent="Blocks" instance=ExtResource("1_3hls8")]
 transform = Transform3D(1, 0, 0, 0, 0.436441, 0.899733, 0, -0.899733, 0.436441, 0, 7.19412, 0.505373)
@@ -48,6 +63,130 @@ transform = Transform3D(0.898534, 0.337546, 0.280535, -0.438904, 0.691031, 0.574
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.49039, 1.67442, 0.665856)
 
 [node name="Icon" type="Sprite3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.45036, 0.917499, 3.34356)
-texture = ExtResource("3_hn12h")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.45036, 1.35973, 3.34356)
+pixel_size = 0.001
+texture = ExtResource("3_rka8t")
 script = ExtResource("4_ihfcg")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.437166, 7.75958, -0.472602)
+stream = ExtResource("5_rka8t")
+max_db = 1.846
+autoplay = true
+
+[node name="GridMap" type="GridMap" parent="."]
+mesh_library = SubResource("MeshLibrary_rka8t")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.99418, -0.051087, 0.0948446, -0.0943502, 0.0120108, 0.995467, -0.0519946, -0.998622, 0.00712087, 0.244831, 17.7151, -0.157115)
+fov = 74.3572
+
+[node name="Walls" type="Node3D" parent="."]
+
+[node name="Wall1" type="StaticBody3D" parent="Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.939, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/Wall1"]
+shape = SubResource("BoxShape3D_5hph3")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Walls/Wall1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.469749, 0, 0)
+mesh = SubResource("BoxMesh_j7kpp")
+
+[node name="Wall2" type="StaticBody3D" parent="Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.0589, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/Wall2"]
+shape = SubResource("BoxShape3D_5hph3")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Walls/Wall2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.469749, 0, 1.39712)
+mesh = SubResource("BoxMesh_j7kpp")
+
+[node name="Wall3" type="StaticBody3D" parent="Walls"]
+transform = Transform3D(-0.000924988, 0, 1, 0, 1, 0, -1, 0, -0.000924988, 0.27878, 0, 25.5435)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/Wall3"]
+shape = SubResource("BoxShape3D_5hph3")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Walls/Wall3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.469749, 0, 0)
+mesh = SubResource("BoxMesh_j7kpp")
+
+[node name="Wall4" type="StaticBody3D" parent="Walls"]
+transform = Transform3D(-0.000924988, 0, 1, 0, 1, 0, -1, 0, -0.000924988, 0.27878, 0, -25.6678)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/Wall4"]
+shape = SubResource("BoxShape3D_5hph3")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Walls/Wall4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.469749, 0, 0)
+mesh = SubResource("BoxMesh_j7kpp")
+
+[node name="Floors" type="Node3D" parent="."]
+
+[node name="Floor" type="StaticBody3D" parent="Floors"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.250833, 0)
+metadata/_edit_group_ = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floors/Floor"]
+mesh = SubResource("BoxMesh_ilcil")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floors/Floor"]
+shape = SubResource("BoxShape3D_3hls8")
+
+[node name="Platform1" type="StaticBody3D" parent="Floors"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.12073, -7.63205)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floors/Platform1"]
+shape = SubResource("BoxShape3D_j7kpp")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floors/Platform1"]
+mesh = SubResource("BoxMesh_bjebc")
+
+[node name="Platform2" type="StaticBody3D" parent="Floors"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.32978, -1.27818)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floors/Platform2"]
+shape = SubResource("BoxShape3D_j7kpp")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floors/Platform2"]
+mesh = SubResource("BoxMesh_bjebc")
+
+[node name="Platform3" type="StaticBody3D" parent="Floors"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.40385, 7.77289, -8.50167)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floors/Platform3"]
+shape = SubResource("BoxShape3D_j7kpp")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floors/Platform3"]
+mesh = SubResource("BoxMesh_bjebc")
+
+[node name="Platform4" type="StaticBody3D" parent="Floors"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.16666, 5.47619, -6.53869)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floors/Platform4"]
+shape = SubResource("BoxShape3D_j7kpp")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floors/Platform4"]
+mesh = SubResource("BoxMesh_bjebc")
+
+[node name="sounds" type="Node3D" parent="."]
+
+[node name="coin" type="AudioStreamPlayer3D" parent="sounds"]
+stream = ExtResource("8_5rr72")
+
+[node name="coin_pickups" type="Node3D" parent="."]
+
+[node name="Coin1" parent="." instance=ExtResource("6_5hph3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.60801, 9.33879, -8.13361)
+
+[node name="Coin2" parent="." instance=ExtResource("6_5hph3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.4688, 6.64201, -6.34185)
+
+[node name="Coin3" parent="." instance=ExtResource("6_5hph3")]
+transform = Transform3D(1, 0, 0, 0, 0.996282, -0.0861473, 0, 0.0861473, 0.996282, 0.427052, 2.24694, -7.22948)
+
+[connection signal="body_entered" from="Coin1" to="Neil" method="_on_coin_body_entered"]
+[connection signal="body_entered" from="Coin2" to="Neil" method="_on_coin_body_entered"]
+[connection signal="body_entered" from="Coin3" to="Neil" method="_on_coin_body_entered"]

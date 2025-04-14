@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cbdw3cqv7qbw4"
+path="res://.godot/imported/spotidownloader.com - The Chase - Hearts2Hearts.mp3-a4dfc4c7b40bf63cc00dd403f6d84298.mp3str"
+
+[deps]
+
+source_file="res://assets/spotidownloader.com - The Chase - Hearts2Hearts.mp3"
+dest_files=["res://.godot/imported/spotidownloader.com - The Chase - Hearts2Hearts.mp3-a4dfc4c7b40bf63cc00dd403f6d84298.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
