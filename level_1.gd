@@ -1,6 +1,6 @@
 extends Node3D
 
-
+@onready var target = $Neil
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
@@ -8,6 +8,6 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
+	get_tree().call_group("enemy", "target_position", target.global_transform.origin)
 func playCoin():
 	$sounds/coin.play()

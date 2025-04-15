@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://gqmiqsj3v3lw"]
+[gd_scene load_steps=24 format=3 uid="uid://gqmiqsj3v3lw"]
 
 [ext_resource type="PackedScene" uid="uid://do8xwy84jqqbw" path="res://block.tscn" id="1_3hls8"]
 [ext_resource type="Script" uid="uid://qfps1pe07mhc" path="res://level_1.gd" id="1_bjebc"]
@@ -8,11 +8,13 @@
 [ext_resource type="AudioStream" uid="uid://dcggw7y4k86gu" path="res://assets/game-music-player-console-8bit-background-intro-theme-297305.mp3" id="5_rka8t"]
 [ext_resource type="PackedScene" uid="uid://cven1dkm1kpfd" path="res://coin.tscn" id="6_5hph3"]
 [ext_resource type="AudioStream" uid="uid://bfp6j4vc6o1ul" path="res://assets/mixkit-game-treasure-coin-2038.wav" id="8_5rr72"]
+[ext_resource type="PackedScene" uid="uid://bksgwj0iu5dvq" path="res://enemy.tscn" id="9_5rr72"]
+[ext_resource type="PackedScene" uid="uid://dga6rthqqhx8w" path="res://SpeedBoostPowerUp.tscn" id="10_gyffv"]
 
 [sub_resource type="MeshLibrary" id="MeshLibrary_rka8t"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_5hph3"]
-size = Vector3(1, 1, 50)
+size = Vector3(1.94757, 8.9978, 109.965)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j7kpp"]
 albedo_color = Color(0.341176, 0.576471, 0.807843, 1)
@@ -20,6 +22,10 @@ albedo_color = Color(0.341176, 0.576471, 0.807843, 1)
 [sub_resource type="BoxMesh" id="BoxMesh_j7kpp"]
 material = SubResource("StandardMaterial3D_j7kpp")
 size = Vector3(1, 10, 55)
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_gyffv"]
+vertices = PackedVector3Array(-3, 0.499167, -10.5, -1.25, 0.499167, -10.75, -1.5, 0.499167, -24.5, -24.5, 0.499167, -24.5, -24.5, 0.499167, -8.5, -3, 0.499167, -8.5, 1.5, 0.499167, -10.75, 1.75, 0.499167, -24.5, 3, 0.499167, -10.75, 3.25, 0.499167, -9, 24.5, 0.499167, -9.25, 24.5, 0.499167, -24.5, -0.75, 8.74917, -10.75, -0.75, 8.74917, -6.5, 3.5, 8.74917, -6.5, 3.5, 8.74917, -10.75, -2, 1.99917, -9.75, -2, 1.99917, -5.5, 2, 1.99917, -5.5, 2, 1.99917, -9.75, 3.25, 0.499167, -6.25, 24.5, 0.499167, -6, -9.25, 6.24917, -8.75, -9.25, 6.24917, -4.5, -5, 6.24917, -4.5, -5, 6.24917, -8.75, -24.5, 0.499167, -6.75, -3, 0.499167, -6.75, -3, 0.499167, -4.75, -0.75, 0.499167, -4.5, -24.5, 0.499167, 24.5, -0.75, 0.499167, 24.5, 3, 0.499167, -4.5, 1, 0.499167, 24.5, 24.5, 0.499167, 24.5, 1, 0.499167, -4.5, -2, 4.24917, -3.5, -2, 4.24917, 0.75, 2, 4.24917, 0.75, 2, 4.24917, -3.5)
+polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 3), PackedInt32Array(3, 0, 4), PackedInt32Array(0, 5, 4), PackedInt32Array(1, 2, 6), PackedInt32Array(6, 2, 7), PackedInt32Array(8, 6, 7), PackedInt32Array(8, 7, 9), PackedInt32Array(9, 7, 10), PackedInt32Array(10, 7, 11), PackedInt32Array(15, 14, 12), PackedInt32Array(12, 14, 13), PackedInt32Array(19, 18, 16), PackedInt32Array(16, 18, 17), PackedInt32Array(9, 10, 20), PackedInt32Array(20, 10, 21), PackedInt32Array(25, 24, 22), PackedInt32Array(22, 24, 23), PackedInt32Array(4, 5, 26), PackedInt32Array(26, 5, 27), PackedInt32Array(26, 27, 28), PackedInt32Array(28, 29, 26), PackedInt32Array(26, 29, 31), PackedInt32Array(26, 31, 30), PackedInt32Array(20, 21, 32), PackedInt32Array(32, 21, 34), PackedInt32Array(32, 34, 33), PackedInt32Array(33, 35, 32), PackedInt32Array(29, 35, 31), PackedInt32Array(31, 35, 33), PackedInt32Array(39, 38, 36), PackedInt32Array(36, 38, 37)]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5hph3"]
 albedo_color = Color(0.237722, 0.728072, 0.188371, 1)
@@ -37,6 +43,19 @@ size = Vector3(5, 1, 5)
 
 [sub_resource type="BoxMesh" id="BoxMesh_bjebc"]
 size = Vector3(5, 1, 5)
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_5rr72"]
+sky_top_color = Color(0.207082, 0.438018, 0.795292, 1)
+sky_horizon_color = Color(0.844118, 0.610902, 0.389534, 1)
+sun_angle_max = 54.0
+sun_curve = 0.160766
+
+[sub_resource type="Sky" id="Sky_gyffv"]
+sky_material = SubResource("ProceduralSkyMaterial_5rr72")
+
+[sub_resource type="Environment" id="Environment_1pe0h"]
+background_mode = 2
+sky = SubResource("Sky_gyffv")
 
 [node name="Level1" type="Node3D"]
 script = ExtResource("1_bjebc")
@@ -59,8 +78,8 @@ transform = Transform3D(1, 0, 0, 0, 0.436441, 0.899733, 0, -0.899733, 0.436441, 
 [node name="Block4" parent="Blocks" instance=ExtResource("1_3hls8")]
 transform = Transform3D(0.898534, 0.337546, 0.280535, -0.438904, 0.691031, 0.574316, 0, -0.639171, 0.769065, 0, 9.07102, -0.408672)
 
-[node name="Neil" parent="." instance=ExtResource("2_hbghi")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.49039, 1.67442, 0.665856)
+[node name="Neil" parent="." groups=["Player"] instance=ExtResource("2_hbghi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.4284, 1.67442, -23.4006)
 
 [node name="Icon" type="Sprite3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.45036, 1.35973, 3.34356)
@@ -68,9 +87,10 @@ pixel_size = 0.001
 texture = ExtResource("3_rka8t")
 script = ExtResource("4_ihfcg")
 
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+[node name="BGM" type="AudioStreamPlayer3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.437166, 7.75958, -0.472602)
 stream = ExtResource("5_rka8t")
+volume_db = -12.309
 max_db = 1.846
 autoplay = true
 
@@ -123,16 +143,19 @@ shape = SubResource("BoxShape3D_5hph3")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.469749, 0, 0)
 mesh = SubResource("BoxMesh_j7kpp")
 
-[node name="Floors" type="Node3D" parent="."]
+[node name="Floors" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavigationMesh_gyffv")
 
 [node name="Floor" type="StaticBody3D" parent="Floors"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.250833, 0)
 metadata/_edit_group_ = true
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Floors/Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.436693, 0)
 mesh = SubResource("BoxMesh_ilcil")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Floors/Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.506996, 0)
 shape = SubResource("BoxShape3D_3hls8")
 
 [node name="Platform1" type="StaticBody3D" parent="Floors"]
@@ -179,14 +202,29 @@ stream = ExtResource("8_5rr72")
 [node name="coin_pickups" type="Node3D" parent="."]
 
 [node name="Coin1" parent="." instance=ExtResource("6_5hph3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.60801, 9.33879, -8.13361)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.60801, 9.57542, -8.13361)
 
 [node name="Coin2" parent="." instance=ExtResource("6_5hph3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.4688, 6.64201, -6.34185)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.4688, 6.90517, -6.34185)
 
 [node name="Coin3" parent="." instance=ExtResource("6_5hph3")]
-transform = Transform3D(1, 0, 0, 0, 0.996282, -0.0861473, 0, 0.0861473, 0.996282, 0.427052, 2.24694, -7.22948)
+transform = Transform3D(1, 0, 0, 0, 0.996282, -0.0861473, 0, 0.0861473, 0.996282, 0.427052, 2.75632, -7.18543)
+
+[node name="Coin4" parent="." instance=ExtResource("6_5hph3")]
+transform = Transform3D(1, 0, 0, 0, 0.996282, -0.0861473, 0, 0.0861473, 0.996282, 1.90694, 5.29122, -0.927206)
+
+[node name="NPC" type="Node3D" parent="."]
+
+[node name="AlJames_enemy" parent="NPC" groups=["enemy"] instance=ExtResource("9_5rr72")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.3246, 0.462719, 23.3334)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_1pe0h")
+
+[node name="powerup" parent="." instance=ExtResource("10_gyffv")]
+transform = Transform3D(1, 0, 0, 0, 0.899214, 0.437508, 0, -0.437508, 0.899214, -2.63896, 1.60589, 1.3448)
 
 [connection signal="body_entered" from="Coin1" to="Neil" method="_on_coin_body_entered"]
 [connection signal="body_entered" from="Coin2" to="Neil" method="_on_coin_body_entered"]
 [connection signal="body_entered" from="Coin3" to="Neil" method="_on_coin_body_entered"]
+[connection signal="body_entered" from="Coin4" to="Neil" method="_on_coin_body_entered"]

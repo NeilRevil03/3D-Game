@@ -1,0 +1,28 @@
+[gd_scene load_steps=6 format=3 uid="uid://dga6rthqqhx8w"]
+
+[ext_resource type="Script" uid="uid://cc8v7fgtb4pxu" path="res://SpeedBoostPowerUp.gd" id="1_wh0le"]
+[ext_resource type="ArrayMesh" uid="uid://ct851vc61wpjc" path="res://assets/MinorPotion_Stamina.obj" id="2_6cuax"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_kyvak"]
+size = Vector3(0.3, 0.38822, 0.265747)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wh0le"]
+albedo_color = Color(0.470182, 0.314476, 0.128334, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6cuax"]
+albedo_color = Color(0, 0.468024, 0.200786, 1)
+
+[node name="SpeedBoostPowerUp" type="Area3D"]
+script = ExtResource("1_wh0le")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0597961, -0.000305176)
+shape = SubResource("BoxShape3D_kyvak")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
+mesh = ExtResource("2_6cuax")
+surface_material_override/0 = SubResource("StandardMaterial3D_wh0le")
+surface_material_override/1 = SubResource("StandardMaterial3D_6cuax")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
